@@ -1,6 +1,9 @@
 <?
-$field = array();
-$field[0]="img/wasser.png";
-$field[1]="img/grass.png";
-$field[2]="img/stein.png";
+$bfield = array();
+$bfield[0]="img/wasser.png";
+$bfield[1]="img/grass.png";
+$bfield[2]="img/stein.png";
+
+$build = array();
+$build[0]=null;
 ?>

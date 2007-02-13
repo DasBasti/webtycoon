@@ -12,7 +12,10 @@ body {
 
 .menu img {
 	margin:10px;
-	border:solid 1px #bbb;
+	border-left:solid 1px #000;
+	border-bottom:solid 1px #bbb;
+	border-right:solid 1px #bbb;
+	border-top:solid 1px #000;
 	background-color:#aaa;
 }
 .field {
