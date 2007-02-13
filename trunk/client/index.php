@@ -37,7 +37,7 @@ foreach($map as $line){
 	foreach($line as $field){
 		$f=intval($field['field']);
 		$b=intval($field['build']);
-		$maphtml.="<td background='$bfield[$f]' width='32' height='32'>$build[$b]</td>\n";
+		$maphtml.="<td background='$bfield[$f]' width='32' height='32'><img src='$build[$b]' /></td>\n";
 	}
 	$maphtml.="</tr>\n";
 }
