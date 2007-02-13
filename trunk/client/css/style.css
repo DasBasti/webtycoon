@@ -1,0 +1,32 @@
+body {
+	margin:0px;
+	width:650px;
+	background-color:#555;
+	margin:auto;
+}
+
+.menu {
+	background-color:#666;
+	height:50px;
+}
+
+.menu img {
+	margin:10px;
+	border:solid 1px #bbb;
+	background-color:#aaa;
+}
+.field {
+		height:480px;
+		width:640px;
+		margin:auto;
+}
+
+.grass td {
+	background-image:url(../img/grass.png);
+}
+
+.ticker {
+	margin:auto;
+	height:16px;
+	text-align:center;
+}

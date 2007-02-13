@@ -1,0 +1,30 @@
+body {
+	width:90%;
+}
+
+.logo {
+	float:left;
+}
+
+.login {
+	float:right;
+}
+
+.menu {
+	clear:both;
+	float:left;
+}
+
+.bar {
+	clear:both;
+}
+
+.content {
+	margin:auto;
+	text-align:center;
+}
+
+.footer {
+	clear:both;
+	text-align:center;
+}
