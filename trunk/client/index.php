@@ -37,17 +37,16 @@ foreach($map as $line){
 	foreach($line as $field){
 		$f=intval($field['field']);
 		$b=intval($field['build']);
-		$maphtml.="<td background='$bfield[$f]' width='32' height='32'><img src='$build[$b]' /></td>\n";
+		$maphtml.="<td background='$bfield[$f]' width='32' height='32'>";
+		if($b != null)$maphtml.="<img src='$build[$b]' />";
+		$maphtml.="</td>\n";
+
 	}
 	$maphtml.="</tr>\n";
 }
 
 $fh = fopen("html/main.html","r");
 $tplhtml = fread($fh,filesize("html/main.html"));
-
-//echo "<pre>";
-//print_r($map);
-//exit;
 
 echo str_replace("<%map%>",$maphtml,$tplhtml);
 
