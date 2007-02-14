@@ -37,7 +37,8 @@ foreach($map as $inty => $line){
 	foreach($line as $intx => $field){
 		$f=intval($field['field']);
 		$b=intval($field['build']);
-		$maphtml.="<td background='$bfield[$f]' width='32' height='32'><img src='$build[$b]' alt='".($intx+1)."/".($inty+1)."' /></td>\n";
+		$maphtml.="<td background='$bfield[$f]' width='32' height='32'><img src='$build[$b]' alt='".($intx+1)."/".($inty+1).
+                  "' onclick='action(".($intx+1).",".($inty+1).")' /></td>\n";
 
 	}
 	$maphtml.="</tr>\n";

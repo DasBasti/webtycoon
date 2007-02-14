@@ -4,10 +4,10 @@
  */
 
 session_start();
-incude("../lib/db.php");
+include("../lib/db.php");
 
 function __autoload($class){
-	require_once("rpc/".strtolower(basename($class)).".php");
+	require_once("lib/".strtolower(basename($class)).".php");
 }
 
 if(!extension_loaded('json')){
@@ -16,43 +16,44 @@ if(!extension_loaded('json')){
 
 $response = new stdClass;
 
-try {
+
 	$payload=json_decode(file_get_contents('php://input'));
 	if(!$payload){
-		throw new Exeption('Keine JSON Daten');
+		$response->error = 'Keine JSON Daten';
 	}
 	if(!isset($payload->method)|| empty($payload->method)){
-		throw new Exeption('Keine Methode definiert!');
+		$response->error = 'Keine Methode definiert!';
 	}
 	if(strpos($payload->method,'::')===false){
-		throw new Exeption('Keine Klasse Definiert!');
+		$response->error = 'Keine Klasse Definiert!';
 	}
 
 	list($class,$method)=explode('::',$payload->method,2);
 
 	$obj=new $class();
-	if(!obj){
-		throw new Exeption('Ein Fehler beim Instanziieren der Klasse!');
+	if(!$obj){
+		$response->error = 'Ein Fehler beim Instanziieren der Klasse!';
 	}
 	if(!is_callable(array($obj,$method))){
-		throw new Exeption('Die MEthode ist nicht definiert!');
+		$response->error = 'Die Methode ist nicht definiert!';
 	}
 	if(!call_user_func_array(array($obj,$method),$payload->params)){
-		throw new Exeption('Die Ausführung der MEthode ist fehlgeschlagen!');
+		$response->error = "Die Ausfuehrung der Methode $method ist fehlgeschlagen!";
 	}
 
 	$response->result=$obj->buffer;
 
-} catch (Exeption $e) {
+ /*catch (Exeption $e) {
 	$err=new stdClass;
 
 	$err->message=$e->getMessage();
+	/*
 	$err->line=$e->getLine();
 	$err->file=$e->getFile();
 	$err->trace=$e->getTraceAsString();
-
+	/
 	$response->error=$err;
-}
+}*/
 
 $response->id=$payload->id;
 
