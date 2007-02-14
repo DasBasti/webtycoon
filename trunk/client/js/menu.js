@@ -15,5 +15,5 @@ function menuClick(id){
 }
 
 function menuEvent(id){
- alert("Mache Event nummer "+id);
+ alert("Frage Server was Eventnummer "+id+" ist.");
 }
