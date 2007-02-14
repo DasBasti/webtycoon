@@ -32,14 +32,12 @@ foreach($bldlines as $inty => $line){
 }
 
 $maphtml="";
-foreach($map as $line){
+foreach($map as $inty => $line){
 	$maphtml.="<tr>\n";
-	foreach($line as $field){
+	foreach($line as $intx => $field){
 		$f=intval($field['field']);
 		$b=intval($field['build']);
-		$maphtml.="<td background='$bfield[$f]' width='32' height='32'>";
-		if($b != null)$maphtml.="<img src='$build[$b]' />";
-		$maphtml.="</td>\n";
+		$maphtml.="<td background='$bfield[$f]' width='32' height='32'><img src='$build[$b]' alt='".($intx+1)."/".($inty+1)."' /></td>\n";
 
 	}
 	$maphtml.="</tr>\n";

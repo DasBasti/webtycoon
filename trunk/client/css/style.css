@@ -7,7 +7,7 @@ body {
 
 .menu {
 	background-color:#666;
-	height:50px;
+	height:54px;
 }
 
 .menu img {
@@ -22,6 +22,7 @@ body {
 		height:480px;
 		width:640px;
 		margin:auto;
+		clear:both;
 }
 
 .grass td {
@@ -32,4 +33,27 @@ body {
 	margin:auto;
 	height:16px;
 	text-align:center;
+}
+
+.hidden-menu {
+	visibility:hidden;
+	position:absolute;
+}
+
+.show-menu {
+	position:absolute;
+	border:solid 1px #000;
+	background-color:#ccc;
+}
+
+.show-menu a {
+	width:150px;
+	border:1px solid #ddd;
+	display: block;
+	text-decoration:none;
+	color:#000;
+}
+
+.menubutton {
+	float:left;
 }

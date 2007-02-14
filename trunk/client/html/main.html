@@ -4,20 +4,57 @@
 	<head>
 		<title>Camping Tycoon - Server1</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/menu.js" type="text/javascript" />
 	</head>
 	<body>
 		<div class="menu">
-			<img src="img/build-landscape.png" alt="Landschaft bearbeiten" />
-			<img src="img/build-building.png" alt="Gebäude bauen" />
-			<img src="img/build-playground.png" alt="Spielplätze bauen" />
-			<img src="img/repair.png" alt="Reparieren" />
-			<img src="img/messages.png" alt="Mitteilungen" />
+			<div class="menubutton">
+				<img src="img/build-landscape.png" alt="Landschaft bearbeiten" onclick="showMenu('landscape-menu')" />
+				<div id="landscape-menu" class="hidden-menu">
+					<a href="#" onclick="menuClick(1)">Gras</a>
+					<a href="#" onclick="menuClick(2)">Stein</a>
+					<a href="#" onclick="menuClick(3)">Wasser</a>
+				</div>
+			</div>
+			<div class="menubutton">
+				<img src="img/build-building.png" alt="Gebäude bauen" onclick="showMenu('building-menu')" />
+				<div id="building-menu" class="hidden-menu">
+						<a href="#" onclick="menuClick(4)">Zelt</a>
+						<a href="#" onclick="menuClick(5)">Wohnwagen</a>
+						<a href="#" onclick="menuClick(6)">Straße</a>
+						<a href="#" onclick="menuClick(7)">Baum</a>
+				</div>
+			</div>
+			<div class="menubutton">
+				<img src="img/build-playground.png" alt="Spielplätze bauen" onclick="showMenu('playground-menu')" />
+				<div id="playground-menu" class="hidden-menu">
+						<a href="#" onclick="menuClick(8)">Spielplatz</a>
+						<a href="#" onclick="menuClick(9)">Spielhalle</a>
+						<a href="#" onclick="menuClick(10)">Internet Café</a>
+				</div>
+			</div>
+			<div class="menubutton">
+				<img src="img/repair.png" alt="Reparieren" onclick="menuClick(14)" />
+			</div>
+			<div class="menubutton">
+				<img src="img/messages.png" alt="Mitteilungen" onclick="showMenu('message-menu')" />
+				<div id="message-menu" class="hidden-menu">
+						<a href="#" onclick="menuClick(11)">Bilanz</a>
+						<a href="#" onclick="menuClick(12)">Werbung</a>
+						<a href="#" onclick="menuClick(13)">Besucher</a>
+				</div>
+			</div>
 		</div>
-		<div class="field">
+
+
+
+
+
+		<div class="field" onclick="hideMenu()">
 			<table border="0" cellspacing="0" cellpadding="0">
 <%map%>
 			</table>
 		</div>
-		<div class="ticker"> - - - Ticker - - - </div>
+		<div class="ticker" onclick="hideMenu()"> - - - Ticker - - - </div>
 	</body>
 </html>
