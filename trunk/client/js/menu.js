@@ -69,6 +69,7 @@ function menuClick(id){
 }
 
 function menuEvent(id){
+ document.getElementById("buildbutton").attributes[1].nodeValue="menubutton-right";
  sende("Event::getDescription",id);
  actionid=id;
 }
@@ -77,5 +78,10 @@ function action(x,y){
  if(actionid){
   sende("Event::doAction",[actionid,x,y]);
  }
- //actionid=null;
+}
+
+function stopAction(){
+ document.getElementById("buildbutton").attributes[1].nodeValue="menubutton-right-hidden";
+ actionid=null;
+ document.getElementById('ticker').innerHTML="&nbsp;";
 }
