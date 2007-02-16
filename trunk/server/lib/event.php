@@ -39,5 +39,9 @@ class Event {
 		$this->buffer->field=$maphtml;
 		return true;
 	}
+
+	function doNothing($id){
+		return true;
+	}
 }
 ?>

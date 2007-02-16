@@ -50,9 +50,6 @@
 						<a href="#" onclick="menuClick(13)">Besucher</a>
 				</div>
 			</div>
-			<div class="menubutton-right" id="buildbutton">
-				Vermögen: <b id="money"></b>
-			</div>
 			<div class="menubutton-right-hidden" id="buildbutton">
 				<img src="img/stop.png" alt="Bauaktion abbrechen" onclick="stopAction()" />
 			</div>
@@ -67,6 +64,9 @@
 <%map%>
 
 		</div>
-		<div class="ticker" id="ticker" onclick="hideMenu()"> &nbsp; </div>
+		<div class="ticker" onclick="hideMenu()">
+			<div style="float:left">Vermögen: <b id="money"></b></div>
+			<div id="ticker">&nbsp;</div>
+		</div>
 	</body>
 </html>

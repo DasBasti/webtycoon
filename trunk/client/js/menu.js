@@ -22,7 +22,7 @@ function init() {
 			xhttp = false;
 		}
 	}
-
+sende("Event::doNothing","loop");
 }
 
 function sende(func,id){
