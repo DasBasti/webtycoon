@@ -44,6 +44,10 @@ $response = new stdClass;
 
 	$response->result=$obj->buffer;
 
+$db = new db();
+$db->query("SELECT money FROM user WHERE id='$_COOKIE[uid]'");
+$response->result->money=$db->singleres('money');
+
 $response->id=$payload->id;
 
 ob_start("ob_gzhandler");

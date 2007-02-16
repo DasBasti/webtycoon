@@ -9,4 +9,5 @@ $build[0]="img/empty.png";
 $build[1]="img/zelt.png";
 $build[2]="img/feuer.png";
 $build[3]="img/holz.png";
+$build[4]="img/wohnwagen.png";
 ?>

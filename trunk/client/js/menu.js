@@ -47,7 +47,7 @@ function callback() {
 		}
 		if(res.result.ticker) document.getElementById('ticker').innerHTML=res.result.ticker;
 		if(res.result.field) document.getElementById('field').innerHTML=res.result.field;
-
+		if(res.result.money) document.getElementById('money').innerHTML=res.result.money;
 	}
 }
 
