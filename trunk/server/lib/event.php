@@ -12,8 +12,14 @@ class Event {
 		return true;
 	}
 
-	function doEvent($cmd) {
-		// $cmd beinhaltet action:x:y
+	function doAction($cmd) {
+		print_r($cmd);
+		$this->db->query("SELECT `file` FROM `event` WHERE id='$cmd[0]'");
+		if(file_exists("event/".$this->db->singleres('file'))) {
+			require_once "event/".$this->db->singleres('file');
+		}
+		$this->buffer->ticker="&nbsp;";
+		return true;
 	}
 }
 ?>

@@ -73,7 +73,7 @@ function menuEvent(id){
 
 function action(x,y){
  if(actionid){
-  sende("Event::doAction",actionid+":"+x+":"+y);
+  sende("Event::doAction",[actionid,x,y]);
  }
  actionid=null;
 }
