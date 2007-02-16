@@ -13,25 +13,10 @@ $db=new db();
 $map = array();
 
 $db->query("SELECT map FROM maps WHERE user_id='$_COOKIE[uid]'");
-$maparray = $db->singleres("map");
-$maplines = explode("\n",$maparray);
-foreach($maplines as $inty => $line){
-	foreach(explode(":",$line) as $intx => $field){
-		$map[$inty][$intx]['field']=$field;
-	}
-}
 
+$map = unserialize(gzuncompress(base64_decode($db->singleres('map'))));
 
-$db->query("SELECT map FROM buildings WHERE user_id='$_COOKIE[uid]'");
-$bldarray = $db->singleres("map");
-$bldlines = explode("\n",$bldarray);
-foreach($bldlines as $inty => $line){
-	foreach(explode(":",$line) as $intx => $field){
-		$map[$inty][$intx]['build']=$field;
-	}
-}
-
-$maphtml="";
+$maphtml="<table border='0' cellspacing='0' cellpadding='0'>";
 foreach($map as $inty => $line){
 	$maphtml.="<tr>\n";
 	foreach($line as $intx => $field){
@@ -43,7 +28,7 @@ foreach($map as $inty => $line){
 	}
 	$maphtml.="</tr>\n";
 }
-
+$maphtml.="</table>";
 $fh = fopen("html/main.html","r");
 $tplhtml = fread($fh,filesize("html/main.html"));
 

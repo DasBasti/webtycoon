@@ -45,7 +45,9 @@ function callback() {
 			alert(res.error);
 			return;
 		}
-		document.getElementById('ticker').innerHTML=res.result.ticker;
+		if(res.result.ticker) document.getElementById('ticker').innerHTML=res.result.ticker;
+		if(res.result.field) document.getElementById('field').innerHTML=res.result.field;
+
 	}
 }
 
@@ -75,5 +77,5 @@ function action(x,y){
  if(actionid){
   sende("Event::doAction",[actionid,x,y]);
  }
- actionid=null;
+ //actionid=null;
 }
