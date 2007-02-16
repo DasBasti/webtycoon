@@ -5,6 +5,7 @@
 ob_start();
 session_start();
 include("../lib/db.php");
+include("../lib/map.php");
 
 function __autoload($class){
 	require_once("lib/".strtolower(basename($class)).".php");
@@ -56,7 +57,6 @@ $fh=fopen("debug.txt","a+");
 fwrite($fh,"\n--------------------------------\n");
 fwrite($fh,ob_get_flush());
 fclose($fh);
-
 ob_start("ob_gzhandler");
 
 echo json_encode($response);
