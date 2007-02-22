@@ -1,5 +1,9 @@
 var xhttp=null;
 var actionid=null;
+//window.captureEvents(Event.MOUSEDOWN);
+//window.onmousedown = unselectaction
+
+document.oncontextmenu = unselectaction;
 
 function init() {
 	if(window.ActiveXObject){
@@ -72,6 +76,11 @@ function menuEvent(id){
  document.getElementById("buildbutton").attributes[1].nodeValue="menubutton-right";
  sende("Event::getDescription",id);
  actionid=id;
+ if(id==16){
+   document.getElementById("mapbody").attributes[0].nodeValue="demolishmode";
+ } else {
+   document.getElementById("mapbody").attributes[0].nodeValue="buildmode";
+ }
 }
 
 function action(x,y){
@@ -84,4 +93,13 @@ function stopAction(){
  document.getElementById("buildbutton").attributes[1].nodeValue="menubutton-right-hidden";
  actionid=null;
  document.getElementById('ticker').innerHTML="&nbsp;";
+ document.getElementById("mapbody").attributes[0].nodeValue="none";
+}
+
+function unselectaction(e){
+if(e && e.which == 3) {
+ stopAction();
+ hideMenu();
+}
+return false;
 }

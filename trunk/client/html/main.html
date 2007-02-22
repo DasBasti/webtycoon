@@ -7,7 +7,7 @@
 		<script src="js/json.js" type="text/javascript" />
 		<script src="js/menu.js" type="text/javascript" />
 	</head>
-	<body onload="init()">
+	<body onload="init()" onmousedown="unselectaction()" id="mapbody" class="none">
 		<div class="menu">
 			<div class="menubutton">
 				<img src="img/build-landscape.png" alt="Landschaft bearbeiten" onclick="showMenu('landscape-menu')" />
