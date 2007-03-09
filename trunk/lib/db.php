@@ -7,7 +7,7 @@ class db {
 	}
 
 	function query($str){
-		//file_put_contents(microtime()."sql.txt",$str);
+		file_put_contents(microtime()."sql.txt",$str);
 		$this->str = $str;
 		$this->res = mysql_query($str);
 		$this->result = array();
@@ -32,7 +32,7 @@ class db {
 		return $this->result;
 	}
 
-	function singleres($field){
+	function singleres($field=0){
 		return $this->result[$field];
 	}
 }

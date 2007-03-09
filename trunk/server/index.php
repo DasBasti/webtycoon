@@ -4,11 +4,13 @@
  */
 session_start();
 include("../lib/db.php");
+include("set/costs.php");
 
-$_COOKIE['uid']=1;
+//$_COOKIE['uid']=1;
 
 function __autoload($class){
-	require_once("lib/".strtolower(basename($class)).".php");
+	if(file_exists("lib/".strtolower(basename($class)).".php"))
+	  require_once("lib/".strtolower(basename($class)).".php");
 }
 
 if(!extension_loaded('json')){

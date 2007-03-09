@@ -12,6 +12,20 @@ $db=new db();
 
 $map = array();
 
+if(isset($_POST['login'])){
+	$db->query("SELECT * FROM `user` WHERE username='$_POST[username]' AND password=MD5('$_POST[password]')");
+	$user = $db->resarray();
+	if($db->num_rows != 0){
+		$_COOKIE['uid']=$user['id'];
+	}
+}
+
+if(isset($_REQUEST['logout'])){
+	$_COOKIE['uid']=null;
+	header("Location: http://localhost/webtycoon");
+}
+
+
 if(isset($_COOKIE['uid'])){
 
 	$db->query("SELECT map FROM maps WHERE user_id='$_COOKIE[uid]'");
@@ -37,7 +51,7 @@ if(isset($_COOKIE['uid'])){
 	echo str_replace("<%map%>",$maphtml,$tplhtml);
 
 } else {
-	die("Not loged in!");
+	die("Login Error");
 }
 
 ?>

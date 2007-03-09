@@ -1,4 +1,6 @@
 <?
+
+if(costMoney($costs['demolish'])){
 	$x=$cmd[1];
 	$y=$cmd[2];
 
@@ -7,5 +9,5 @@
 	$map[($y-1)][($x-1)]['build']=0;// setze gebäude auf 0 (leer)
 	$mapcode = base64_encode(gzcompress(serialize($map),9));
 	$this->db->query("UPDATE maps SET map='$mapcode' WHERE user_id='$_COOKIE[uid]'");
-
+}
 ?>

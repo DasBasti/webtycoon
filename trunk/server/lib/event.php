@@ -48,5 +48,20 @@ class Event {
 	function doNothing($id) {
 		return true;
 	}
+
+	private function costMoney($amount) {
+		$this->db->query("SELECT money FROM user WHERE id='$_COOKIE[uid]'");
+		$money = $this->db->singleres();
+		if($money >= $amount){
+			$newmoney = $money - $amount;
+			$this->db->query("UPDATE user SET money='$newmoney' WHERE id='$_COOKIE[uid]'");
+			return true;
+		} else {
+			$this->renderWindow("nomoney");
+			return false;
+		}
+
+	}
+	}
 }
 ?>

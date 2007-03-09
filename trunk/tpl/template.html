@@ -9,7 +9,14 @@
 
 		<div class="logo"><h1>Webtycoon 0.1</h1></div>
 
-		<div class="login"><a href="client/">Server1</a></div>
+		<div class="login">
+			<form action="client/index.php" method="POST">
+			<input type="text" name="username" value="Username" size="10" />
+			<input type="password" name="password" value="password" size="10" /><br />
+			<input type="submit" />
+			<input type="hidden" name="login" value="true" />
+			</form>
+		</div>
 
 		<div class="bar"></div>
 
