@@ -40,7 +40,12 @@ class Event {
 		return true;
 	}
 
-	function doNothing($id){
+	function renderWindow($cmd) {
+		if(file_exists("windows/show".$cmd."window.php")) include "windows/show".$cmd."window.php";
+		return true;
+	}
+
+	function doNothing($id) {
 		return true;
 	}
 }

@@ -85,3 +85,44 @@ body {
 	border-top:solid 1px #666;
 	background-color:#666;
 }
+
+.window-hidden {
+	visibility:hidden;
+	max-height:0px;
+}
+
+.windowb {
+	position:absolute;
+	background-color:#ccc;
+	width:599px;
+	max-height:429px;
+	margin:25px;
+	border:solid 2px #666;
+}
+
+.windowb h1 {
+	font-size:12px;
+	margin:0px;
+	padding:0px;
+	padding-left:5px;
+	background-color:#00E;
+	border-bottom:solid 1px #666;
+	font-weight:normal;
+	color:#FFF;
+}
+
+.windowb p {
+	padding:5px;
+	margin:5px;
+}
+
+.windowb form {
+	border-top:solid 1px #333;
+	width:90%;
+	margin:auto;
+}
+
+.windowb input {
+	float:right;
+	margin:5px;
+}

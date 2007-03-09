@@ -45,9 +45,9 @@
 			<div class="menubutton">
 				<img src="img/messages.png" alt="Mitteilungen" onclick="showMenu('message-menu')" />
 				<div id="message-menu" class="hidden-menu">
-						<a href="#" onclick="menuClick(11)">Bilanz</a>
-						<a href="#" onclick="menuClick(12)">Werbung</a>
-						<a href="#" onclick="menuClick(13)">Besucher</a>
+						<a href="#" onclick="ShowWindow('bilanz')">Bilanz</a>
+						<a href="#" onclick="ShowWindow('werbung')">Werbung</a>
+						<a href="#" onclick="ShowWindow('besucher')">Besucher</a>
 				</div>
 			</div>
 			<div class="menubutton-right-hidden" id="buildbutton">
@@ -55,9 +55,9 @@
 			</div>
 		</div>
 
+<div id="windowbox" class="window-hidden">
 
-
-
+</div>
 
 		<div class="field" id="field" onclick="hideMenu()">
 

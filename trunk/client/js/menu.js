@@ -49,9 +49,15 @@ function callback() {
 			alert(res.error);
 			return;
 		}
+		if(res.result.money) document.getElementById('money').innerHTML=res.result.money;
+
+		if(res.result.window){
+			document.getElementById("windowbox").innerHTML=res.result.window;
+			document.getElementById("windowbox").attributes[0].nodeValue="windowb";
+			return true;
+		}
 		if(res.result.ticker) document.getElementById('ticker').innerHTML=res.result.ticker;
 		if(res.result.field) document.getElementById('field').innerHTML=res.result.field;
-		if(res.result.money) document.getElementById('money').innerHTML=res.result.money;
 	}
 }
 
@@ -87,6 +93,11 @@ function action(x,y){
  if(actionid){
   sende("Event::doAction",[actionid,x,y]);
  }
+}
+
+function ShowWindow(id){
+ hideMenu();
+ sende("Event::renderWindow",id);
 }
 
 function stopAction(){
