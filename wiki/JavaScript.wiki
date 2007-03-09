@@ -1,0 +1,23 @@
+#labels Phase-Design
+#How JavaScript is used in WebTycoon
+
+= JavaScript in Webtycoon =
+
+This page shows how JavaScript is used in the WebTycoon Framework. WebTycoon uses JSON and AJAX to interact with the server and make the game a little bit more dektoplike than other webgames where you have to reload the pages over and over.
+
+= Details =
+
+*The standart JSON Request to the server contains:*
+  * The class to use
+  * The function to call in the class
+  * The parameters for the function
+  * A timestamp to recogize the answers
+
+
+*The standart JSON answer to the client can contain:*
+  * The timestamp given in the request (this is necessary)
+  * The money the player has
+  * The map to display
+  * A message for the statusbar
+  * A window to popup
+
