@@ -1,5 +1,5 @@
 #labels Phase-Design
-#How JavaScript is used in WebTycoon
+_How JavaScript is used in WebTycoon_
 
 = JavaScript in Webtycoon =
 
@@ -20,4 +20,3 @@ This page shows how JavaScript is used in the WebTycoon Framework. WebTycoon use
   * The map to display
   * A message for the statusbar
   * A window to popup
-
