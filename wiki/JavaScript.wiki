@@ -1,5 +1,5 @@
 #labels Phase-Design
-_How JavaScript is used in WebTycoon_
+_How JavaScript is used in WebTycoon
 
 = JavaScript in Webtycoon =
 
