@@ -9,7 +9,7 @@ body {
 }
 
 .demolishmode{
-	cursor:crosshair;
+	cursor:url(img/demolish.png);
 }
 
 .buildmode{

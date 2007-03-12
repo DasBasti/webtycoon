@@ -7,7 +7,7 @@ class Event {
 	}
 
 	function getDescription($id) {
-		$this->db->query("SELECT `desc` FROM event WHERE id='$id'");
+		$this->db->query("SELECT `desc` FROM events WHERE id='$id'");
 		$this->buffer->ticker=$this->db->singleres('desc');
 		return true;
 	}
@@ -16,12 +16,11 @@ class Event {
 
 		include "../client/res/fields.php";
 
-		$this->db->query("SELECT `file` FROM `event` WHERE id='$cmd[0]'");
+		$this->db->query("SELECT `file` FROM `events` WHERE id='$cmd[0]'");
 		if(file_exists("event/".$this->db->singleres('file'))) {
 			include "event/".$this->db->singleres('file');
-		}
-
-		$this->db->query("SELECT map FROM maps WHERE user_id='$_COOKIE[uid]'");
+		} echo "aber bis hier gehts!";
+		$this->db->query("SELECT map FROM maps WHERE uid='$_GLOBALS[uid]'",true);
 		$map = unserialize(gzuncompress(base64_decode($this->db->singleres('map'))));
 		$maphtml='<table border="0" cellspacing="0" cellpadding="0">';
 		foreach($map as $inty => $line){
@@ -50,18 +49,17 @@ class Event {
 	}
 
 	private function costMoney($amount) {
-		$this->db->query("SELECT money FROM user WHERE id='$_COOKIE[uid]'");
+		$this->db->query("SELECT money FROM user WHERE id='$_GLOBALS[uid]'");
 		$money = $this->db->singleres();
 		if($money >= $amount){
 			$newmoney = $money - $amount;
-			$this->db->query("UPDATE user SET money='$newmoney' WHERE id='$_COOKIE[uid]'");
+			$this->db->query("UPDATE user SET money='$newmoney' WHERE id='$_GLOBALS[uid]'");
 			return true;
 		} else {
 			$this->renderWindow("nomoney");
 			return false;
 		}
 
-	}
 	}
 }
 ?>

@@ -3,8 +3,6 @@
  * The Webtycoon Client
  */
 
-//$_COOKIE['uid']=1;
-
 include "../lib/db.php";
 include "res/fields.php";
 
@@ -13,22 +11,26 @@ $db=new db();
 $map = array();
 
 if(isset($_POST['login'])){
-	$db->query("SELECT * FROM `user` WHERE username='$_POST[username]' AND password=MD5('$_POST[password]')");
-	$user = $db->resarray();
-	if($db->num_rows != 0){
-		$_COOKIE['uid']=$user['id'];
+	$db->query("SELECT id FROM `user` WHERE username='$_POST[username]' AND password=MD5('$_POST[password]')",true);
+	$userid = $db->singleres();
+	if($db->num_rows == 0){
+		die("Login Error");
+	} else {
+		$db->query("UPDATE user SET session='$_COOKIE[PHPSESSID]' WHERE id='$userid'",true);
 	}
 }
 
 if(isset($_REQUEST['logout'])){
-	$_COOKIE['uid']=null;
+	// session löschen
 	header("Location: http://localhost/webtycoon");
 }
 
+$db->query("SELECT id FROM user WHERE session='$_COOKIE[PHPSESSID]'");
+$_GLOBALS['uid'] = $db->singleres();
 
-if(isset($_COOKIE['uid'])){
+if(isset($_GLOBALS['uid'])){
 
-	$db->query("SELECT map FROM maps WHERE user_id='$_COOKIE[uid]'");
+	$db->query("SELECT map FROM maps WHERE uid='$_GLOBALS[uid]'");
 
 	$map = unserialize(gzuncompress(base64_decode($db->singleres('map'))));
 

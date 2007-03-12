@@ -6,8 +6,8 @@ class db {
 		mysql_select_db("webtycoon");
 	}
 
-	function query($str){
-		file_put_contents(microtime()."sql.txt",$str);
+	function query($str,$record=false){
+		if($record) file_put_contents(microtime()."sql.txt",$str);
 		$this->str = $str;
 		$this->res = mysql_query($str);
 		$this->result = array();
@@ -23,7 +23,7 @@ class db {
 					$this->result[] = $ar;
 				}
 			} else {
-				$this->result = mysql_fetch_assoc($this->res);
+				$this->numres = mysql_fetch_array($this->res);
 			}
 		}
 	}
@@ -33,6 +33,7 @@ class db {
 	}
 
 	function singleres($field=0){
-		return $this->result[$field];
+		//print_r($this->numres);
+		return $this->numres[$field];
 	}
 }

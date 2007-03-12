@@ -2,11 +2,16 @@
 /*
  * JSON-RPC Server
  */
+ob_start();
 session_start();
 include("../lib/db.php");
 include("set/costs.php");
 
 //$_COOKIE['uid']=1;
+
+$db = new db();
+$db->query("SELECT id FROM user WHERE session='$_COOKIE[PHPSESSID]'");
+$_GLOBALS['uid'] = $db->singleres();
 
 function __autoload($class){
 	if(file_exists("lib/".strtolower(basename($class)).".php"))
@@ -46,11 +51,14 @@ $response = new stdClass;
 
 	$response->result=$obj->buffer;
 
-$db = new db();
-$db->query("SELECT money FROM user WHERE id='$_COOKIE[uid]'");
+$db->query("SELECT money FROM user WHERE id='$_GLOBALS[uid]'");
 $response->result->money=$db->singleres('money');
 
 $response->id=$payload->id;
+print_r($response);
+print_r($_GLOBALS);
+$out=ob_get_clean();
+file_put_contents(microtime()."html.txt",$out);
 
 ob_start("ob_gzhandler");
 
