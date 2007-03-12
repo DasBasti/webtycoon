@@ -1,4 +1,0 @@
-Die Karte besteht aus einer 15x20 Matrix. Die Karte besteht aus zwei Schichten.
-Einer Landschaftsschicht und einer Gebäudeschicht. Die Landschaft beinhaltet Informationen über
-Den Boden, ob er bebaut werden kann und mit was. Die Gebäudeschicht ist dann übergeordnet und
-enthällt Informationen über die Gebäude, die auf der Karte stehen.
