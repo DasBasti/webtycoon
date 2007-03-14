@@ -16,6 +16,7 @@ class db {
 			file_put_contents("error.txt",mysql_error($this->connection));
 			return;
 		}
+		$this->aff_rows = @mysql_affected_rows();
 		$this->num_rows = @mysql_num_rows($this->res);
 		if($this->num_rows != 0) {
 			if($this->num_rows > 1){

@@ -4,7 +4,7 @@
  */
 ob_start();
 session_start();
-include("../lib/db.php");
+
 include("set/costs.php");
 
 //$_COOKIE['uid']=1;
