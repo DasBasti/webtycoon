@@ -25,17 +25,17 @@ function init() {
 			xhttp = false;
 		}
 	}
-//sende("Event::doNothing","loop");
 }
 
 function sende(func,id){
 	if(xhttp) {
-		xhttp.open("POST","index.php",true);
+		xhttp.open("POST","http://localhost/server/index.php",true);
 		xhttp.onreadystatechange=callback;
 		var request={
 			method:func,
 			params:[id],
-			id:new Date().getTime()
+			id:new Date().getTime(),
+			session:sessionid,
 		};
 		xhttp.send(request.toJSONString());
 	}
@@ -52,10 +52,9 @@ function callback() {
 			if(res.result.money) {
 				document.getElementById('money').innerHTML=res.result.money;
 			}
-
 			if(res.result.window) {
-				document.getElementById("windowbox").innerHTML=res.result.window;
-				document.getElementById("windowbox").attributes[0].nodeValue="windowb";
+				document.getElementById('windowbox').innerHTML=res.result.window;
+				document.getElementById('windowbox').attributes[0].nodeValue="windowb";
 				return true;
 			}
 			if(res.result.ticker) {
@@ -66,6 +65,8 @@ function callback() {
 			}
 			if(res.result.auth) {
 				sessionid=res.result.auth;
+				userid=res.result.uid;
+				sende("Event::DoAction",null);
 			}
 		}
 	}

@@ -50,7 +50,7 @@
 						<a href="#" onclick="ShowWindow('werbung')">Werbung</a>
 						<a href="#" onclick="ShowWindow('besucher')">Besucher</a>
 						<hr />
-						<a href="?logout=1">Logout</a>
+						<a href="index.html" onclick="javascript:logout()">Logout</a>
 				</div>
 			</div>
 			<div class="menubutton-right-hidden" id="buildbutton">
@@ -63,11 +63,11 @@
 </div>
 
 		<div class="field" id="field" onclick="hideMenu()">
-
-Name<input type="text" name="username" />
-Passwort<input type="password" name="password" />
-<button onclick="javascript:login(document.getElementsByName('username')[0].value,document.getElementsByName('password')[0].value)" value="Login"></button>
-
+<div style="width:10%;margin:auto;">
+Name<input type="text" name="username" value="Filbert" /><br />
+Passwort<input type="password" name="password" value="bastian" /><br />
+<button onclick="javascript:login(document.getElementsByName('username')[0].value,document.getElementsByName('password')[0].value)">Login</button>
+</div>
 		</div>
 		<div class="ticker" onclick="hideMenu()">
 			<div style="float:left">Vermögen: <b id="money"></b>&euro;</div>
