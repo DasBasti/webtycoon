@@ -64,11 +64,10 @@
 
 		<div class="field" id="field" onclick="hideMenu()">
 
-<form>
 Name<input type="text" name="username" />
 Passwort<input type="password" name="password" />
-<button onclick="login(username.value,password.value)" value="Login"></button>
-</form>
+<button onclick="javascript:login(document.getElementsByName('username')[0].value,document.getElementsByName('password')[0].value)" value="Login"></button>
+
 		</div>
 		<div class="ticker" onclick="hideMenu()">
 			<div style="float:left">Vermögen: <b id="money"></b>&euro;</div>
