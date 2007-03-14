@@ -10,8 +10,6 @@ include("set/costs.php");
 //$_COOKIE['uid']=1;
 
 $db = new db();
-$db->query("SELECT id FROM user WHERE session='$_COOKIE[PHPSESSID]'");
-$_GLOBALS['uid'] = $db->singleres();
 
 function __autoload($class){
 	if(file_exists("lib/".strtolower(basename($class)).".php"))
@@ -35,6 +33,10 @@ $response = new stdClass;
 	if(strpos($payload->method,'::')===false){
 		$response->error = 'Keine Klasse Definiert!';
 	}
+echo "suche nach session ".$payload->session."<br>";
+$db->query("SELECT id FROM user WHERE session='".$payload->session."'");
+$GLOBALS['uid'] = $db->singleres('id');
+echo "habe id: ".$GLOBALS['uid']."<br>";
 
 	list($class,$method)=explode('::',$payload->method,2);
 
@@ -51,17 +53,20 @@ $response = new stdClass;
 
 	$response->result=$obj->buffer;
 
-$db->query("SELECT money FROM user WHERE id='$_GLOBALS[uid]'");
-$response->result->money=$db->singleres('money');
+if(empty($response->result->error) && empty($response->result->auth)){
+ $db->query("SELECT money FROM user WHERE id='$GLOBALS[uid]'");
+ $response->result->money=$db->singleres('money');
+}
 
 $response->id=$payload->id;
-print_r($response);
-print_r($_GLOBALS);
+
 $out=ob_get_clean();
+
+//uncomment to make html output
 file_put_contents(microtime()."html.txt",$out);
 
-ob_start("ob_gzhandler");
 
+ob_start("ob_gzhandler");
 echo json_encode($response);
 
 ?>
