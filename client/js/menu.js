@@ -1,8 +1,6 @@
 var xhttp=null;
 var actionid=null;
 var sessionid;
-//window.captureEvents(Event.MOUSEDOWN);
-//window.onmousedown = unselectaction
 
 document.oncontextmenu = unselectaction;
 
@@ -27,12 +25,12 @@ function init() {
 			xhttp = false;
 		}
 	}
-sende("Event::doNothing","loop");
+//sende("Event::doNothing","loop");
 }
 
 function sende(func,id){
 	if(xhttp) {
-		xhttp.open("POST","http://localhost/webtycoon/server/index.php?sessid="+sessionid,true);
+		xhttp.open("POST","index.php",true);
 		xhttp.onreadystatechange=callback;
 		var request={
 			method:func,
@@ -45,20 +43,31 @@ function sende(func,id){
 
 function callback() {
 	if(xhttp.readyState==4) {
-		var res = eval('('+xhttp.responseText+')');
-		if(res.error) {
-			alert(res.error);
-			return;
-		}
-		if(res.result.money) document.getElementById('money').innerHTML=res.result.money;
+		var res = xhttp.responseText.parseJSON();
+		if(res){
+			if(res.error) {
+				alert(res.error);
+				return;
+			}
+			if(res.result.money) {
+				document.getElementById('money').innerHTML=res.result.money;
+			}
 
-		if(res.result.window){
-			document.getElementById("windowbox").innerHTML=res.result.window;
-			document.getElementById("windowbox").attributes[0].nodeValue="windowb";
-			return true;
+			if(res.result.window) {
+				document.getElementById("windowbox").innerHTML=res.result.window;
+				document.getElementById("windowbox").attributes[0].nodeValue="windowb";
+				return true;
+			}
+			if(res.result.ticker) {
+				document.getElementById('ticker').innerHTML=res.result.ticker;
+			}
+			if(res.result.field) {
+				document.getElementById('field').innerHTML=res.result.field;
+			}
+			if(res.result.auth) {
+				sessionid=res.result.auth;
+			}
 		}
-		if(res.result.ticker) document.getElementById('ticker').innerHTML=res.result.ticker;
-		if(res.result.field) document.getElementById('field').innerHTML=res.result.field;
 	}
 }
 
@@ -67,6 +76,7 @@ function showMenu(id) {
  hideMenu();
  document.getElementById(id).attributes[0].nodeValue="show-menu";
 }
+
 function hideMenu() {
  document.getElementById("landscape-menu").attributes[0].nodeValue="hidden-menu";
  document.getElementById("building-menu").attributes[0].nodeValue="hidden-menu";
@@ -109,9 +119,9 @@ function stopAction(){
 }
 
 function unselectaction(e){
-if(e && e.which == 3) {
- stopAction();
- hideMenu();
-}
-return false;
+ if(e && e.which == 3) {
+  stopAction();
+  hideMenu();
+ }
+ return false;
 }
