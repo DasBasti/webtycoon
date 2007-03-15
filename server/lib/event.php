@@ -7,8 +7,8 @@ class Event {
 	}
 
 	function getDescription($id) {
-		$this->db->query("SELECT `desc` FROM events WHERE id='$id'");
-		$this->buffer->ticker=$this->db->singleres('desc');
+		$this->db->query("SELECT `desc`,`cost` FROM events WHERE id='$id'");
+		$this->buffer->ticker=$this->db->singleres('desc')." (".$this->db->singleres('cost')."&euro;)";
 		return true;
 	}
 
