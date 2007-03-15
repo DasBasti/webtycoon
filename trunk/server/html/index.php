@@ -5,15 +5,15 @@
 ob_start();
 session_start();
 
-include("set/costs.php");
+include("../set/costs.php");
 
 //$_COOKIE['uid']=1;
 
 $db = new db();
 
 function __autoload($class){
-	if(file_exists("lib/".strtolower(basename($class)).".php"))
-	  require_once("lib/".strtolower(basename($class)).".php");
+	if(file_exists("../lib/".strtolower(basename($class)).".php"))
+	  require_once("../lib/".strtolower(basename($class)).".php");
 }
 
 if(!extension_loaded('json')){
@@ -33,11 +33,8 @@ $response = new stdClass;
 	if(strpos($payload->method,'::')===false){
 		$response->error = 'Keine Klasse Definiert!';
 	}
-echo "suche nach session ".$payload->session."<br>";
 $db->query("SELECT id FROM user WHERE session='".$payload->session."'");
 $GLOBALS['uid'] = $db->singleres('id');
-echo "habe id: ".$GLOBALS['uid']."<br>";
-
 	list($class,$method)=explode('::',$payload->method,2);
 
 	$obj=new $class();
@@ -63,7 +60,7 @@ $response->id=$payload->id;
 $out=ob_get_clean();
 
 //uncomment to make html output
-file_put_contents(microtime()."html.txt",$out);
+//file_put_contents(microtime()."html.txt",$out);
 
 
 ob_start("ob_gzhandler");
