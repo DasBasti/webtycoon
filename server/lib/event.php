@@ -14,14 +14,14 @@ class Event {
 
 	function doAction($cmd) {
 		global $GLOBALS;
-		include "../client/res/fields.php";
+//		include "../client/res/fields.php";
 
 		if($cmd!=null){
 			$this->db->query("SELECT `file` FROM `events` WHERE id='$cmd[0]'");
-			if(file_exists("event/".$this->db->singleres('file'))) {
-				include "event/".$this->db->singleres('file');
+			if(file_exists("../event/".$this->db->singleres('file'))) {
+				include "../event/".$this->db->singleres('file');
 			}
-		} echo "hier ist id: ".$GLOBALS['uid'];
+		}
 		$this->db->query("SELECT map FROM maps WHERE uid='$GLOBALS[uid]'");
 		$map = unserialize(gzuncompress(base64_decode($this->db->singleres('map'))));
 		$maphtml='<table border="0" cellspacing="0" cellpadding="0">';
