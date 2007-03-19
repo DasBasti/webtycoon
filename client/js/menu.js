@@ -29,7 +29,7 @@ function init() {
 
 function sende(func,id){
 	if(xhttp) {
-		xhttp.open("POST","http://localhost/server/index.php",true);
+		xhttp.open("POST","http://localhost/server/html/index.php",true);
 		xhttp.onreadystatechange=callback;
 		var request={
 			method:func,
@@ -55,6 +55,7 @@ function callback() {
 			if(res.result.window) {
 				document.getElementById('windowbox').innerHTML=res.result.window;
 				document.getElementById('windowbox').attributes[0].nodeValue="windowb";
+				stopAction();
 				return true;
 			}
 			if(res.result.ticker) {
