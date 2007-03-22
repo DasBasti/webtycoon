@@ -1,0 +1,12 @@
+#summary One-sentence summary of this page.
+#labels Phase-Implementation
+
+= Using WebTycoon for Games =
+
+Webtycoon is used for creating a game called CampingTycoon. You have to manage a camping site witch camper, tents and many more things.
+
+
+= Details =
+
+
+You have to manage a camping site. A day on the site are 6 houres in realtime so every real day will have 4 game days. every day the income is computed by an complex formula that includes the amount of buildings, the amount of people that visited the site, depeding on the weather (good, ok, bad). Also things can become broken. So you have to look for broken things and repair them.
