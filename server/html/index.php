@@ -35,7 +35,15 @@ $response = new stdClass;
 	}
 $db->query("SELECT id FROM user WHERE session='".$payload->session."'");
 $GLOBALS['uid'] = $db->singleres('id');
+
 	list($class,$method)=explode('::',$payload->method,2);
+
+// Blocle alle aktionen, wenn eine Berechnung ansteht!
+if(file_exists("../controller/calculating.lock")){
+	$class="Event";
+	$method="renderWindow";
+	$payload->params="ticker";
+}
 
 	$obj=new $class();
 	if(!$obj){
@@ -48,11 +56,12 @@ $GLOBALS['uid'] = $db->singleres('id');
 		$response->error = "Die Ausfuehrung der Methode $method ist fehlgeschlagen!";
 	}
 
+
 	$response->result=$obj->buffer;
 
 if(empty($response->result->error) && empty($response->result->auth)){
  $db->query("SELECT money FROM user WHERE id='$GLOBALS[uid]'");
- $response->result->money=$db->singleres('money');
+ $response->result->money=intval($db->singleres('money'));
 }
 
 $response->id=$payload->id;
@@ -60,7 +69,7 @@ $response->id=$payload->id;
 $out=ob_get_clean();
 
 //uncomment to make html output
-//file_put_contents(microtime()."html.txt",$out);
+file_put_contents(microtime()."html.txt",$out);
 
 
 ob_start("ob_gzhandler");
