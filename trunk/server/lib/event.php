@@ -14,7 +14,7 @@ class Event {
 
 	function doAction($cmd) {
 		global $GLOBALS;
-//		include "../client/res/fields.php";
+		include "../../client/res/fields.php";
 
 		if($cmd!=null){
 			$this->db->query("SELECT `file` FROM `events` WHERE id='$cmd[0]'");
@@ -42,7 +42,7 @@ class Event {
 	}
 
 	function renderWindow($cmd) {
-		if(file_exists("windows/show".$cmd."window.php")) include "windows/show".$cmd."window.php";
+		if(file_exists("../windows/show".$cmd."window.php")) include "../windows/show".$cmd."window.php";
 		return true;
 	}
 
