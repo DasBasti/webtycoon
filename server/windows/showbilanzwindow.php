@@ -1,6 +1,6 @@
 <?
 
-$this->db->query("SELECT `desc`,`amount` FROM transactions WHERE uid='$GLOBALS[uid]' LIMIT 17");
+$this->db->query("SELECT `desc`,`amount` FROM transactions WHERE uid='$GLOBALS[uid]' ORDER BY id DESC LIMIT 10");
 
 $bilanzhtml="<table style='padding:25px'><tr><td><b>Beschreibung</b></td><td><b>Betrag</b></td></tr>";
 foreach($this->db->resarray() as $line){

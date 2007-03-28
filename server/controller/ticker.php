@@ -35,6 +35,7 @@ foreach($db->resarray() as $user){
 	$besucher=$mapattr+$mapsize;
 	$db->query("UPDATE `user` SET money=money+'$money' WHERE id='".$user['id']."'");
 	$db->query("INSERT INTO transactions (`uid`,`amount`,`desc`) VALUES('$user[id]', '$money', 'Abrechnung Tag $tc')");
+	$db->query("INSERT INTO visitors (`uid`,`day`,`count`) VALUES('$user[id]', '$tc', '$besucher')");
 }
 
 

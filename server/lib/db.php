@@ -2,7 +2,7 @@
 
 class db {
 	function db(){
-		$this->connection = mysql_connect("localhost","root");
+		$this->connection = mysql_connect("localhost","root", "root");
 		mysql_select_db("webtycoon");
 	}
 
