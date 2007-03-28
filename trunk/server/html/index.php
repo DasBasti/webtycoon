@@ -65,11 +65,11 @@ if(empty($response->result->error) && empty($response->result->auth)){
 }
 
 $response->id=$payload->id;
-
+print_r($response);
 $out=ob_get_clean();
 
 //uncomment to make html output
-file_put_contents(microtime()."html.txt",$out);
+//file_put_contents(microtime()."html.txt",$out);
 
 
 ob_start("ob_gzhandler");
