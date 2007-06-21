@@ -9,7 +9,7 @@ body {
 }
 
 .demolishmode{
-	cursor:url(img/demolish.png);
+	cursor: url(../img/Cursor1.cur);
 }
 
 .buildmode{
@@ -125,4 +125,9 @@ body {
 .windowb input {
 	float:right;
 	margin:5px;
+}
+
+.money{
+	float:left;
+	width:20%;
 }

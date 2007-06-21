@@ -1,6 +1,7 @@
 var xhttp=null;
 var actionid=null;
 var sessionid;
+var loggedin=false;
 
 document.oncontextmenu = unselectaction;
 
@@ -50,7 +51,8 @@ function callback() {
 				return;
 			}
 			if(res.result.money) {
-				document.getElementById('money').innerHTML=res.result.money;
+				document.getElementById('money').innerHTML="Vermögen: <b>"+res.result.money+"</b>&euro;";
+				document.getElementById('ticker').innerHTML="";
 			}
 			if(res.result.window) {
 				document.getElementById('windowbox').innerHTML=res.result.window;
@@ -67,6 +69,7 @@ function callback() {
 			if(res.result.auth) {
 				sessionid=res.result.auth;
 				userid=res.result.uid;
+				loggedin=true;
 				sende("Event::DoAction",null);
 			}
 		}
@@ -75,8 +78,10 @@ function callback() {
 
 
 function showMenu(id) {
- hideMenu();
- document.getElementById(id).attributes[0].nodeValue="show-menu";
+ if(loggedin){
+  hideMenu();
+  document.getElementById(id).attributes[0].nodeValue="show-menu";
+ }
 }
 
 function hideMenu() {
@@ -87,8 +92,10 @@ function hideMenu() {
 }
 
 function menuClick(id){
- hideMenu();
- menuEvent(id);
+ if(loggedin){
+  hideMenu();
+  menuEvent(id);
+ }
 }
 
 function menuEvent(id){
@@ -109,8 +116,10 @@ function action(x,y){
 }
 
 function ShowWindow(id){
- hideMenu();
- sende("Event::renderWindow",id);
+ if(loggedin){
+  hideMenu();
+  sende("Event::renderWindow",id);
+ }
 }
 
 function stopAction(){
