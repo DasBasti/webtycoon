@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary CampingTycoon using WebTycoon as backend
 #labels Phase-Implementation
 
 = Using WebTycoon for Games =
