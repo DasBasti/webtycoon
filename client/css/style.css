@@ -9,11 +9,11 @@ body {
 }
 
 .demolishmode{
-	cursor: url(../img/Cursor1.cur);
+	cursor:crosshair;
 }
 
 .buildmode{
-	cursor:move;
+	cursor:pointer;;
 }
 
 .menu {
